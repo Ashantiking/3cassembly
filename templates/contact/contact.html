@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- ======= Header ======= -->
+{% include "partials/_navbar.html" %}
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section class="breadcrumb-section pb-5 set-bg">
+  <img
+    src="{% static 'assets/img/top/contacts.png' %}"
+    class="d-block w-100"
+    height="200vh"
+    alt="..."
+  />
+</section>
+<!-- End Hero -->
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <!-- End Portfolio Section -->
+
+  <!-- ======= Why Us Section ======= -->
+  <section id="why-us" class="why-us">
+    <div class="container">
+      <div class="section-title">
+        <h2>You can Contact Us here</h2>
+        <h5>We Promise to messages you as soon as possible thanks</h5>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 p-2">
+          <p>
+            Call unto Me, and I will answer you.' (Jeremiah 33:3). This is God’s
+            invitation to pray and His promise to answer. It is always His will
+            to answer! Be assured our prayer team will attend to your request
+            and keep you and your love ones in prayers.<br /><br />
+            However, take note that God will not move us to pray for something
+            that is not sanctioned by scripture, meaning according to His
+            Word.<br /><br />
+            Wherever you are sending your prayer request from, be encouraged
+            that distance is not a barrier to the Holy Spirit! In fact, God is
+            even more powerful in distance – depending on the state of your
+            heart. <br /><br />
+            Therefore, as you about to submit your request, we encourage you to
+            free your heart from offence, pain of the past and bitterness. Be
+            conscious that you are welcome in His presence! We look forward to
+            hearing your testimony, in Jesus Name!<br /><br />
+            Remember, it is not the amount of prayer you pray but the faith you
+            put into your prayer that counts.
+          </p>
+        </div>
+
+        <div class="col-lg-6 mt-4 mt-lg-0 justify-content-between">
+          <div class="box">
+            <h3>
+              <span
+                >Please don’t submit the same prayer request more than
+                once.</span
+              >
+            </h3>
+            <div class="contact-form-right">
+              <form action="" method="post">
+                {% csrf_token %} {{ form.as_p }}
+                <br />
+                <input
+                  style="border-radius: 30px"
+                  type="submit"
+                  value="Submit"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Why Us Section -->
+
+  <!-- end section -->
+  <!-- section -->
+
+  <!-- end section -->
+  <!-- section -->
+  <!-- End Portfolio Section -->
+  <!-- End Team Section -->
+  <!-- ======= Mission Statement ======= -->
+
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% include "partials/_footer.html" %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
+
+<!-- Vendor JS Files -->
+{% endblock %}

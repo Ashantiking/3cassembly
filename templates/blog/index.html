@@ -1,0 +1,684 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>3C Assembly</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="static/assets/img/favicon.png" rel="icon" />
+    <link
+      href="static/assets/img/apple-touch-icon.png"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="static/assets/vendor/animate.css/animate.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="static/assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="static/assets/vendor/boxicons/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="static/assets/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="static/assets/vendor/swiper/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="static/assets/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo"
+      ><img
+        src="{% static 'assets/img/logo/logo3c.png' %}"
+        alt=""
+        class="img-fluid"
+    /></a>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="{% url 'index' %}">Home</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'about' %}">About</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'sermon' %}">Sermon</a></li>
+        <li><a href="{% url 'blog' %}">DEVOTIONAL</a></li>
+        <li class="dropdown">
+          <a href="#"
+            ><span>Pages</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li><a href="{% url 'book' %}">E BOOKS</a></li>
+            <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+            <li><a href="{% url 'event' %}">EVENTS</a></li>
+            <li><a href="#">MUSIC</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link scrollto" href="{% url 'contact' %}">Contacts</a></li>
+        <li>
+          <a
+            class="getstarted scrollto"
+            style="border-radius: 30px"
+            href="#about"
+            >Partner with Us</a
+          >
+        </li>
+        <div class="nav-item dropdown px-5">
+          {% if request.user.is_authenticated %}
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          {% if profile.avatar %}
+            <img
+              src="{{ profile.avatar.url }}"
+              class="rounded-circle"
+              height="35"
+              width="35"
+              alt=""
+              loading="lazy"
+            />
+            {% endif %}
+            {{user.first_name}}
+          </a>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item" href="">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            <hr>
+            <li><a class="dropdown-item" href="#"><img
+              src="{% static 'assets/img/logo/avator1.png' %}"
+              class="rounded-circle"
+              height="35"
+              width="35"
+              alt=""
+              loading="lazy"
+            /></a></li>
+          </ul>
+      </div>
+      {% else %}
+      <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          
+            <img
+              src="{% static 'assets/img/logo/avator1.png' %}"
+              class="rounded-circle"
+              height="35"
+              width="35"
+              alt=""
+              loading="lazy"
+            />
+          </a>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+          </ul>
+      </div>
+            
+      {% endif %}
+      <div>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+      <div class="hero-container">
+        <div
+          id="heroCarousel"
+          data-bs-interval="5000"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+        >
+          <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+          <div class="carousel-inner" role="listbox">
+            <!-- Slide 1 -->
+            <div
+              class="carousel-item active"
+              style="background-image: url(static/assets/img/slide/bg.png)"
+            >
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <img
+                    class="animate__animated animate__fadeInDown"
+                    src="{% static 'assets/img/logo/logo.png' %}"
+                    height="150"
+                    alt=""
+                    class="img-fluid"
+                  />
+                  <h2 class="animate__animated animate__fadeInDown">
+                    3C ASSEMBLY <br />
+                    Christ Centre Covenant Assembly International
+                  </h2>
+                  <p class="animate__animated animate__fadeInUp">
+                    A Place of Empowerment For Dominion in Life
+                  </p>
+                  <div>
+                    <a
+                      href="{% url 'login' %}"
+                      style="border-radius: 30px"
+                      class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                      >Get Started</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div
+              class="carousel-item"
+              style="background-image: url(static/assets/img/slide/bg1.png)"
+            >
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <img
+                    class="animate__animated animate__fadeInDown"
+                    src="{% static 'assets/img/logo/logo.png' %}"
+                    height="150"
+                    alt=""
+                    class="img-fluid"
+                  />
+                  <h2 class="animate__animated animate__fadeInDown">
+                    Experience God! Experience Grace!!
+                  </h2>
+                  <p class="animate__animated animate__fadeInUp">
+                    O taste and see that the Lord is good;<br />
+                    How blessed is the man who takes refuge in Him<br />
+                    Psalm 34:8
+                  </p>
+                  <div>
+                    <a
+                      href="{% url 'login' %}"
+                      style="border-radius: 30px"
+                      class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                      >Get Started</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="carousel-item"
+              style="background-image: url(static/assets/img/slide/bg2.png)"
+            >
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <img
+                    class="animate__animated animate__fadeInDown"
+                    src="{% static 'assets/img/logo/logo.png' %}"
+                    height="150"
+                    alt=""
+                    class="img-fluid"
+                  />
+                  <h2 class="animate__animated animate__fadeInDown">
+                    WE CAN'T WAIT TO WORSHIP WITH YOU
+                  </h2>
+                  <p class="animate__animated animate__fadeInUp">
+                    Come and see what God has done: he is awesome in his deeds
+                    toward the children of man.
+                    <br />He turned the sea into dry land; they passed through
+                    the river on foot. There did we rejoice in Him. <br />Psalm
+                    66:5-6
+                  </p>
+                  <div>
+                    <a
+                      href="{% url 'login' %}"
+                      style="border-radius: 30px"
+                      class="btn-get-started animate__animated animate__fadeInUp scrollto"
+                      >Get Started</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#heroCarousel"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon bi bi-chevron-left"
+              aria-hidden="true"
+            ></span>
+          </a>
+
+          <a
+            class="carousel-control-next"
+            href="#heroCarousel"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon bi bi-chevron-right"
+              aria-hidden="true"
+            ></span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- End Hero -->
+
+    <main id="main">
+      <!-- ======= Counts Section ======= -->
+      <section id="counts" class="counts">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <i class="bi bi-emoji-smile"></i>
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="232"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p><strong>Happy Clients</strong> consequuntur quae</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <i class="bi bi-journal-richtext"></i>
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="521"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p><strong>Projects</strong> adipisci atque cum quia aut</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <i class="bi bi-headset"></i>
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="1463"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+              <div class="count-box">
+                <i class="bi bi-people"></i>
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="15"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Counts Section -->
+
+      <!-- ======= Clients Section ======= -->
+      <!-- End Clients Section -->
+
+      <!-- ======= Services Section ======= -->
+
+      <section id="services" class="services">
+        <div class="container">
+          <div class="section-title">
+            <h2>Service Sessions</h2>
+            <p>
+              We proclaim to you what we ourselves have actually seen and heard
+              so that you may have fellowship with us. And our fellowship is
+              with the Father and with his Son, Jesus Christ.
+            </p>
+            <p>1 John 1:3</p>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-6 icon-box">
+              <div class="icon"><i class="bi bi-briefcase"></i></div>
+              <h4 class="title">
+                <a href=""
+                  >Wealth Empowerment Service <br />
+                  Sundays 7:30AM</a
+                >
+              </h4>
+              <p class="description">
+                The eyes of your understanding being enlightened; that ye may
+                know what is the hope of his calling, and what the riches of the
+                glory of his inheritance in the saints,
+              </p>
+            </div>
+            <div class="col-lg-4 col-md-6 icon-box">
+              <div class="icon"><i class="bi bi-card-checklist"></i></div>
+              <h4 class="title">
+                <a href=""
+                  >Breakthrough Celebration Service <br />
+                  Sundays 9:00 AM</a
+                >
+              </h4>
+              <p class="description">
+                God will restore everything that was stolen from your storeroom
+                of blessings. Get ready to receive in due time.
+              </p>
+            </div>
+            <div class="col-lg-4 col-md-6 icon-box">
+              <div class="icon"><i class="bi bi-bar-chart"></i></div>
+              <h4 class="title">
+                <a href=""
+                  >Insight for Living <br />
+                  Tuesdays 6:00PM</a
+                >
+              </h4>
+              <p class="description">
+                Study to shew thyself approved unto God, a workman that needeth
+                not to be ashamed, rightly dividing the word of truth. II
+                Timothy 2:15
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Services Section -->
+      
+    <!--==========================
+      Gallery Section
+    ============================-->
+    
+      <!-- ======= Why Us Section ======= -->
+      <section id="why-us" class="why-us">
+        <div class="container">
+          
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <h3><span>Mission Declaration</span></h3>
+                <br/>
+                <p>
+                  I am growing in the knowledge of God.<br/>
+                  I have my Place in Christ.<br/>
+                  I am expression of God's love
+                </p>
+                <br/>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0">
+              <div class="box text-center">
+                <h3><span>Joy Overflow</span></h3>
+                <br/>
+                <p>That's Our Portion</p>
+                <br/>
+                <h6><span>Grace & Peace!</span></h6>
+              </div>
+            </div>
+
+            <div class="col-lg-4 mt-4 mt-lg-0">
+              <div class="box text-center">
+                <h3><span>Faith Confession</span></h3>
+                <p>
+                  There is therefore now no to us which are in Christ Jesus,
+                   who walk not after flesh, but after the Spirit. For the law of the 
+                   Spirit of life in Christ Jesus hath made us free from the law of sin and death.
+                  </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Why Us Section -->
+
+      <!-- End Pricing Section -->
+
+      <!-- ======= Frequently Asked Questions Section ======= -->
+      <!-- ======= Portfolio Section ======= -->
+      <section id="portfolio" class="portfolio">
+        <div class="container">
+          <div class="section-title">
+            <h2>Our Gallery</h2>
+            <p>
+              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
+              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
+              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
+              Quia fugiat sit in iste officiis commodi quidem hic quas.
+            </p>
+          </div>
+
+          <div class="row portfolio-container">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img
+                  src="{% static 'assets/img/portfolio/1.jpeg' %}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <div class="portfolio-info">
+                  <h4>Birthday & Anniversary</h4>
+                  <p>
+                    Celebrating the gift of Life, Blissful Home and God's
+                    faithfullness
+                  </p>
+                  <div class="portfolio-links">
+                    <a
+                      href="{% static 'assets/img/portfolio/1.jpeg' %}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      title="App 1"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a href="portfolio-details.html" title="More Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+              <div class="portfolio-wrap">
+                <img
+                  src="{% static 'assets/img/portfolio/5.jpeg' %}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <div class="portfolio-info">
+                  <h4>Congregation</h4>
+                  <p>Engaging in a life transforming session of the Word</p>
+                  <div class="portfolio-links">
+                    <a
+                      href="{% static 'assets/img/portfolio/9.jpeg' %}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      title="Congregation"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a href="portfolio-details.html" title="More Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img
+                  src="{% static 'assets/img/portfolio/bg4.jpeg' %}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <div class="portfolio-info">
+                  <h4>Impartation</h4>
+                  <p>Imparting Lives through the Living word of God</p>
+                  <div class="portfolio-links">
+                    <a
+                      href="{% static 'assets/img/portfolio/bg4.jpeg' %}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      title="App 2"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a href="portfolio-details.html" title="More Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+              <div class="portfolio-wrap">
+                <img
+                  src="{% static 'assets/img/portfolio/6.jpeg' %}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <div class="portfolio-info">
+                  <h4>Ministration</h4>
+                  <p>How delightful it is to sing praises unto the lord</p>
+                  <div class="portfolio-links">
+                    <a
+                      href="{% static 'assets/img/portfolio/6.jpeg' %}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      title="In worship and Praise"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a href="portfolio-details.html" title="More Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+              <div class="portfolio-wrap">
+                <img
+                  src="{% static 'assets/img/portfolio/8.jpeg' %}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <div class="portfolio-info">
+                  <h4>Web 2</h4>
+                  <p>Web</p>
+                  <div class="portfolio-links">
+                    <a
+                      href="{% static 'assets/img/portfolio/8.jpeg' %}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      title="Web 2"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a href="portfolio-details.html" title="More Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img
+                  src="{% static 'assets/img/portfolio/10.jpeg' %}"
+                  class="img-fluid"
+                  alt=""
+                />
+                <div class="portfolio-info">
+                  <h4>App 3</h4>
+                  <p>App</p>
+                  <div class="portfolio-links">
+                    <a
+                      href="{% static 'assets/img/portfolio/10.jpeg' %}"
+                      data-gallery="portfolioGallery"
+                      class="portfolio-lightbox"
+                      title="App 3"
+                      ><i class="bx bx-plus"></i
+                    ></a>
+                    <a href="portfolio-details.html" title="More Details"
+                      ><i class="bx bx-link"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Portfolio Section -->
+      <!-- End Contact Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    {% include "partials/_footer.html" %}
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="static/assets/vendor/purecounter/purecounter.js"></script>
+    <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="static/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="static/assets/js/main.js"></script>
+  </body>
+</html>

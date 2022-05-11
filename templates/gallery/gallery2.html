@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		
+		    Blog Acheampong Inc.
+		{% endblock  %}
+
+
+		{% block content%}
+
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Gallery  </h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Gallery</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start Gallery  -->
+    <div class="products-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Our Gallery</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button class="active" data-filter="*">All</button>
+                            <button data-filter=".bulbs">Web Development</button>
+                            <button data-filter=".fruits">Apps Development</button>
+							<button data-filter=".podded-vegetables">CCTV Installation</button>
+							<button data-filter=".root-and-tuberous">Root and tuberous</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            {% for gallery in object_list %}
+                <div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">                            
+                            <img src="{{ gallery.image_url }}" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="price-box-bar">
+                <div class="cart-and-bay-btn">
+                    <a class="btn hvr-hover" data-fancybox-close="" href=" {% url 'add_gallery' %} ">Add Gallery</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- End Gallery  -->
+{% endblock %}

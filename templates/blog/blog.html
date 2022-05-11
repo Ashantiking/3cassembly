@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- ======= Header ======= -->
+{% include "partials/_navbar.html" %}
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section class="breadcrumb-section pb-5 set-bg">
+  <img
+    src="{% static 'assets/img/top/devotional.png' %}"
+    class="d-block w-100"
+    height="200vh"
+    alt="..."
+  />
+</section>
+<!-- End Hero -->
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <!-- End Portfolio Section -->
+
+
+
+
+     <!-- ======= Why Us Section ======= -->
+     <section id="why-us" class="why-us">
+        <div class="container">
+          <div class="section-title">
+            <h2>Our Daily Devotionals</h2>
+            <p>
+              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
+              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
+              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
+              Quia fugiat sit in iste officiis commodi quidem hic quas.
+            </p>
+          </div>
+
+          <div class="row">
+            {% for post in object_list %}
+            <div class="col-lg-4 mt-4 mt-lg-0">
+              <div class="box text-center">
+                <h4><span>{{ post.title }}</span></h4>
+                <br/>
+                <p>{{ post.content|truncatewords:20 }}</p>
+                <p>created: {{ post.created_on|date:"N j Y" }},</p>
+                <p>last updated: {{ post.updated_on|timesince }},</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+      <div class="col-sm-5 mx-auto p-3 ml-5">
+        <ul class="pagination style_1">
+          {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+          </li>
+          {% endif %}
+    
+          {% for i in page_obj.paginator.page_range %}
+          <li class=" page-item {% if page_obj.number == i %}active{% endif %}">
+              <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+          </li>
+          {% endfor %}
+  
+          {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+        </div>
+      </section>
+      <!-- End Why Us Section -->
+<!-- end inner page banner -->
+<!-- section -->
+    </div>
+  </div>
+</div>
+<!-- end section -->
+<!-- section -->
+
+<!-- end section -->
+<!-- section -->
+  <!-- End Portfolio Section -->
+  <!-- End Team Section -->
+  <!-- ======= Mission Statement ======= -->
+
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% include "partials/_footer.html" %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
+
+<!-- Vendor JS Files -->
+{% endblock %}

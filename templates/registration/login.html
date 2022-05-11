@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+
+    <div class="container-scroller">
+      <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-5">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="card col-xs-12 mx-auto">
+              <div class="card-body">
+                  <img src="{% static 'assets/img/logo/logo.png' %}" width="auto" height="100" alt="logo">
+                <h3 class="card-title text-left mb-3" style="color:#800080;">Login to your Account</h3>
+                    <div class="from-group">
+                        <form action="{% url 'login'%}" method="post">
+                          {% csrf_token %}
+
+                          {% include 'partials/_messages.html' %}
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text"
+                                 name="username" 
+                                 id="usernameField" 
+                                 placeholder="User Name"
+                                 class="form-control p_input"
+                                 value="{{fieldValues.username}} "
+                                 />
+                                </div>
+                              <div class="from-group">
+                                <label>Password</label>
+                                <input type="password" 
+                                name="password" 
+                                id="passwordField" 
+                                placeholder="Type Your Password" 
+                                class="form-control p_input" 
+                                /> 
+                              </div>
+                              <small class="float-right px-5"></small><small class="float-right px-5"></small>
+                                <small class="float-right px-5 ml-5 showPasswordToggle">SHOW</small>
+                              <br>
+                            </div>
+                            <input type="submit" class="btn btn-block submit-btn" value="Login">
+                        </form>
+                        <br>
+                        <br>
+                  <div class="d-flex">
+                    <a href="#" style="color:#800080;" class="forgot-pass float-right px-5">Forgot password</a>
+                  </div>
+                  <br>
+                  <br>
+                  <p class="sign-up text-center">I don't have an Account?<a style="color:#800080;"  href="{% url 'register' %}"> Register</a></p>
+                <br>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+<script src="{% static 'assets/js/register.js'%} "></script>
+    {% endblock %}
+    

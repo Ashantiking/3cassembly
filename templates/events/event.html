@@ -1,0 +1,80 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- ======= Header ======= -->
+{% include "partials/_navbar.html" %}
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section class="breadcrumb-section pb-5 set-bg">
+  <img
+    src="{% static 'assets/img/top/1.png' %}"
+    class="d-block w-100"
+    height="200vh"
+    alt="..."
+  />
+</section>
+<!-- End Hero -->
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <!-- End Portfolio Section -->
+
+  <!-- ======= Team Section ======= -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Upcoming Events</h2>
+        <p>
+          Explore amazing Moments in God's Presence<br />
+          “For where two or three are gathered in my name, there am I among
+          them.”
+        </p>
+      </div>
+
+      <div class="row portfolio-container">
+        {% for event in object_list %}
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="portfolio-wrap">
+            {% if event.image %}
+            <img src="{{ event.image.url }}" class="img-fluid" alt="" />
+            {% endif %}
+            <div class="portfolio-info">
+              <h4>{{ event.theme }}</h4>
+              <p>{{ event.publication_date }}{{ event.update_date }}</p>
+              <div class="portfolio-links">
+                {% if event.image %}
+                <a
+                  href="{{ event.image.url}}"
+                  data-gallery="portfolioGallery"
+                  class="portfolio-lightbox"
+                  title="{{ event.title }}"
+                  ><i class="bx bx-plus"></i
+                ></a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- End Portfolio Section -->
+  <!-- End Team Section -->
+  <!-- ======= Mission Statement ======= -->
+
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% include "partials/_footer.html" %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
+
+<!-- Vendor JS Files -->
+{% endblock %}

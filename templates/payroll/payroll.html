@@ -1,0 +1,102 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- ======= Header ======= -->
+{% include "partials/_navbar.html" %}
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+<section class="breadcrumb-section pb-5 set-bg">
+  <img class="d-block w-100" height="100vh" />
+</section>
+<!-- End Hero -->
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <div class="section-title">
+    <h2>Payroll Section</h2>
+  </div>
+  <!-- ======= Portfolio Section ======= -->
+  <!-- End Portfolio Section -->
+
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card p-5">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>IMAGE</th>
+                      <th>ID</th>
+                      <th>FULL NAME</th>
+                      <th>AMOUNT</th>
+                      <th>POSITION</th>
+                      <th>DATE</th>
+                    </tr>
+                  </thead>
+                  {% for payroll in object_list %}
+                  <tbody>
+                    <tr>
+                      <td class="py-1">
+                        {% if payroll.image %}
+                        <img
+                          src="{{ payroll.image.url }}"
+                          class="rounded-circle"
+                          height="50"
+                          width="50"
+                          alt=""
+                          loading="lazy"
+                        />
+                        {% endif %}
+                      </td>
+                      <td>{{ payroll.id_number }}</td>
+                      <td>
+                        <a href="{% url 'payroll_details'  payroll.pk %}">
+                          {{ payroll.name }}
+                        </a>
+                      </td>
+                      <td>₦ {{ payroll.sum }}</td>
+                      <td>{{ payroll.position }}</td>
+                      <td>
+                        {{ payroll.created_on|date:"N j Y" }} -
+                        <!---->
+                        {{ payroll.updated_on|timesince }}
+                      </td>
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+
+  <!-- end section -->
+  <!-- section -->
+
+  <!-- end section -->
+  <!-- section -->
+  <!-- End Portfolio Section -->
+  <!-- End Team Section -->
+  <!-- ======= Mission Statement ======= -->
+
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% include "partials/_footer.html" %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
+
+<!-- Vendor JS Files -->
+{% endblock %}

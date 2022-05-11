@@ -1,0 +1,104 @@
+{% load static %}
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo"
+      ><img
+        src="{% static 'assets/img/logo/logo3c.png' %}"
+        alt=""
+        class="img-fluid"
+    /></a>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="{% url 'index' %}">Home</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'about' %}">About</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'sermon' %}">Sermon</a></li>
+        <li><a href="{% url 'blog' %}">DEVOTIONAL</a></li>
+        <li class="dropdown">
+          <a href="#"
+            ><span>Pages</span> <i class="bi bi-chevron-down"></i
+          ></a>
+          <ul>
+            <li><a href="{% url 'book' %}">E BOOKS</a></li>
+            <li><a href="{% url 'gallery' %}">GALLERY</a></li>
+            <li><a href="{% url 'event' %}">EVENTS</a></li>
+            <li><a href="#">MUSIC</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link scrollto" href="{% url 'contact' %}">Contacts</a></li>
+        <li>
+          <a
+            class="getstarted scrollto"
+            style="border-radius: 30px"
+            href="#about"
+            >Partner with Us</a
+          >
+        </li>
+        <div class="nav-item dropdown px-5">
+          {% if request.user.is_authenticated %}
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          {% if profile.avatar %}
+            <img
+              src="{{ profile.avatar.url }}"
+              class="rounded-circle"
+              height="35"
+              width="35"
+              alt=""
+              loading="lazy"
+            />
+            {% endif %}
+            {{user.first_name}}
+          </a>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item" href="">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            <hr>
+            <li><a class="dropdown-item" href="#"><img
+              src="{% static 'assets/img/logo/avator1.png' %}"
+              class="rounded-circle"
+              height="35"
+              width="35"
+              alt=""
+              loading="lazy"
+            /></a></li>
+          </ul>
+      </div>
+      {% else %}
+      <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          
+            <img
+              src="{% static 'assets/img/logo/avator1.png' %}"
+              class="rounded-circle"
+              height="35"
+              width="35"
+              alt=""
+              loading="lazy"
+            />
+          </a>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+          </ul>
+      </div>
+            
+      {% endif %}
+      <div>
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
