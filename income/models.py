@@ -26,8 +26,8 @@ class Income(models.Model):
     class Meta:
         ordering = ['-created_on']
 
-    def __str__(self):
-        return self.category + ": " + str(self.amount)
+    def __int__(self):
+        return self.amount
 
     def get_absolute_url(self):
         return reverse('income')

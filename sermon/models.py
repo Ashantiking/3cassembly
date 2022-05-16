@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from category.models import Category
-from embed_video.fields import EmbedVideoField
 
 # Create your models here.
 
@@ -32,7 +31,7 @@ class Sermon(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     description = models.TextField(max_length=1000)
-    video = models.FileField(upload_to="movies/%y")
+    video = models.FileField(upload_to='movies/%')
     image = models.ImageField(upload_to='movies')
     category = models.ManyToManyField(Category, related_name='sermon_category')
     language = models.ManyToManyField(Language, related_name='language')

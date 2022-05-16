@@ -8,7 +8,7 @@
   <section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
-        <h2>Portfolio Details</h2>
+        <h1 style="color: #800080">{{ payroll.name }} Details</h1>
         <ol>
           <li><a href="index.html">Home</a></li>
           <li>Portfolio Details</li>
@@ -22,15 +22,14 @@
   <section id="portfolio-details" class="portfolio-details">
     <div class="container">
       <div class="row gy-4">
-        <div class="col-lg-8">
+        <div class="col-lg-4">
           <div class="portfolio-details-slider swiper">
             <div class="swiper-wrapper align-items-center">
               <div class="swiper-slide">
                 {% if payroll.image %}
                 <img
                   src="{{ payroll.image.url }}"
-                  class="rounded-circle"
-                  height="600"
+                  height="770"
                   width="300"
                   alt=""
                   loading="lazy"
@@ -43,27 +42,38 @@
 
         <div class="col-lg-4">
           <div class="portfolio-info">
-            <h3>{{ payroll.name }}</h3>
+            <h3 style="color: #800080">{{ payroll.name }}</h3>
             <ul>
               <li><strong>ID #</strong>: {{ payroll.id_number }}</li>
               <li><strong>Position</strong>: {{ payroll.position }}</li>
               <li><strong>Department</strong>: {{ payroll.department }}</li>
+              <li>
+                <strong>Employment Date</strong>: {{ payroll.date_employed }}
+              </li>
               <li><strong>Contacts</strong>: {{ payroll.contact }}</li>
               <li><strong>Blood Group</strong>: {{ payroll.blood_group }}</li>
-              <li><strong>Salary</strong>: {{ payroll.payroll_salary }}</li>
+              <li><strong>Salary</strong>: {{ payroll.salary }}</li>
+              <li><strong>Allowance</strong>: {{ payroll.allowance }}</li>
+              <li><strong>Accomodation</strong>: {{ payroll.accomodation }}</li>
+              <li style="color: #800080">
+                <strong>Total</strong>: {{ payroll.get_total_amount }}
+              </li>
+              <br />
+              <h5 style="color: #800080">BANK DETAILS</h5>
+              <li><strong>Name of Bank</strong>: {{ payroll.bank_name }}</li>
               <li>
-                <strong>Allowance</strong>: {{ payroll.payroll_allowance }}
+                <strong>Account Title</strong>: {{ payroll.account_title }}
               </li>
               <li>
-                <strong>Accomodation</strong>: {{payroll.payroll_accomodation}}
+                <strong>Account Number</strong>: {{ payroll.account_number }}
               </li>
-              <li><strong>Status</strong>: {{ payroll.status }}</li>
-              <li>
-                <strong>Employment Date</strong>:
-                <!---->
-                {{ payroll.created_on|date:"N j Y"}}
-              </li>
-              <li><strong>Next of Kin Name</strong>:</li>
+              {% for status in payroll.status.all %}
+              <li><strong>Status</strong>: {{ status }}</li>
+              {% endfor %}
+
+              <br />
+              <h5 style="color: #800080">NEXT OF KIN DETAILS</h5>
+              <li><strong>Next of Kin Name</strong>: {{payroll.nok_name}}</li>
               <li>
                 <strong>Next of Kin Address</strong>: {{payroll.nok_address}}
               </li>
@@ -73,6 +83,32 @@
             </ul>
           </div>
         </div>
+        <div class="col-lg-4">
+          <div class="portfolio-info">
+            <h3 style="color: #800080">Payment History</h3>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>MONTH</th>
+                    <th>YEAR</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                {% for payment in object_list %}
+                <tbody>
+                  <tr>
+                    <td>{{ payment.month }}</td>
+                    <td>{{ payment.year }}</td>
+                    {% for status in payroll.status.all %}
+                    <td>{{ payment.month }}</td>
+                    {% endfor %}
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
       </div>
     </div>
   </section>

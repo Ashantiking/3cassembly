@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls.base import reverse, reverse_lazy
-from .models import Payroll, Status, Maintenance, Charity
+from .models import Payroll, Status, Maintenance, Charity, Payment, Procurement
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
@@ -87,14 +87,14 @@ class PayrollDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class CharityView(ListView):
-    template_name = 'charity/charity.html'
+    template_name = 'payroll/charity.html'
     queryset = Charity.objects.all()
     paginate_by = 6
 
 
 class CharityDetailView(DetailView):
     model = Charity
-    template_name = 'charity/charity_detail.html'
+    template_name = 'payroll/charity_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -160,14 +160,14 @@ class CharityDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class MaintenanceView(ListView):
-    template_name = 'maintenance/maintenance.html'
+    template_name = 'payroll/maintenance.html'
     queryset = Maintenance.objects.all()
     paginate_by = 6
 
 
 class MaintenanceDetailView(DetailView):
     model = Maintenance
-    template_name = 'maintenance/maintenance_detail.html'
+    template_name = 'payroll/maintenance_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -222,6 +222,152 @@ class MaintenanceDeleteView(LoginRequiredMixin, DeleteView):
         messages.success(
             self.request, 'Maintenance has been deleted successfully.')
         return reverse_lazy("maintenance")
+
+    def get_queryset(self):
+        return self.model.objects.filter(author=self.request.user)
+
+
+####################################################################
+        # PAYMENT SECTION VIEW #
+###################################################################
+
+
+class PaymentView(ListView):
+    template_name = 'payroll/payroll_detail.html'
+    queryset = Payment.objects.all()
+    paginate_by = 10
+
+
+class PaymentDetailView(DetailView):
+    model = Payment
+    template_name = 'payroll/maintenance_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # since our slug field is not unique, we need the primary key to get a unique post
+        pk = self.kwargs['pk']
+
+        payment = get_object_or_404(Payment, pk=pk)
+        context['payment'] = Payment
+        return context
+
+
+class PaymentCreateView(LoginRequiredMixin, CreateView):
+    model = Payment
+    fields = ["month", "year", "name", "total", "status"]
+
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Payment has been created successfully.')
+        return reverse_lazy("payment")
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        obj.save()
+        return super().form_valid(form)
+
+
+class PaymentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Payment
+    fields = ["month", "year", "name", "total", "status"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        update = True
+        context['update'] = update
+
+        return context
+
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Payment has been updated successfully.')
+        return reverse_lazy("payment")
+
+    def get_queryset(self):
+        return self.model.objects.filter(author=self.request.user)
+
+
+class PaymentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Payment
+
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Payment has been deleted successfully.')
+        return reverse_lazy("payment")
+
+    def get_queryset(self):
+        return self.model.objects.filter(author=self.request.user)
+
+
+####################################################################
+        # PROCUREMENT SECTION VIEW #
+###################################################################
+
+
+class ProcurementView(ListView):
+    template_name = 'payroll/procurement.html'
+    queryset = Procurement.objects.all()
+    paginate_by = 10
+
+
+class ProcurementDetailView(DetailView):
+    model = Procurement
+    template_name = 'payroll/procurement_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # since our slug field is not unique, we need the primary key to get a unique post
+        pk = self.kwargs['pk']
+
+        Procurement = get_object_or_404(Procurement, pk=pk)
+        context['procurement'] = Procurement
+        return context
+
+
+class ProcurementCreateView(LoginRequiredMixin, CreateView):
+    model = Procurement
+    fields = ["name", "item", "quantity", "unit_price"]
+
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Procurement has been created successfully.')
+        return reverse_lazy("procurement")
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        obj.save()
+        return super().form_valid(form)
+
+
+class ProcurementUpdateView(LoginRequiredMixin, UpdateView):
+    model = Procurement
+    fields = ["name", "item", "quantity", "unit_price"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        update = True
+        context['update'] = update
+
+        return context
+
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Procurement has been updated successfully.')
+        return reverse_lazy("procurement")
+
+    def get_queryset(self):
+        return self.model.objects.filter(author=self.request.user)
+
+
+class ProcurementDeleteView(LoginRequiredMixin, DeleteView):
+    model = Procurement
+
+    def get_success_url(self):
+        messages.success(
+            self.request, 'Procurement has been deleted successfully.')
+        return reverse_lazy("procurement")
 
     def get_queryset(self):
         return self.model.objects.filter(author=self.request.user)

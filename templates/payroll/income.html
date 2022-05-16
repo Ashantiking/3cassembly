@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- ======= Header ======= -->
+{% include "partials/_navbar.html" %}
+<!-- End Header -->
+
+<!-- ======= Hero Section ======= -->
+
+<!-- End Hero -->
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <div class="section-title pt-5">
+    <h2 class="section-title mt-5">Income Section</h2>
+    <p class="section-title">Here are the Summary of Income Received by 3C Assembly International</p>
+  </div>
+  <!-- ======= Portfolio Section ======= -->
+
+  <!-- End Portfolio Section -->
+
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="col-lg-4 px-5">
+        <ul class="navbar-nav w-100">
+            <li class="nav-item w-100">
+              <form
+                class="nav-link mt-2 mt-md-0 d-none d-lg-flex search"
+                method="POST"
+                action="#"
+              >
+                {% csrf_token %}
+                <input
+                  type="text"
+                  class="form-control"
+                  id="searchField"
+                  placeholder="Search Here"
+                  name="searched"
+                />
+              </form>
+            </li>
+          </ul>
+        </div>
+      <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card px-5">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>TYPE OF INCOME</th>
+                      <th>AMOUNT</th>
+                      <th>DATE</th>
+                    </tr>
+                  </thead>
+                  {% for income in object_list %}
+                  <tbody>
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      </td>
+                      {% for category in income.category.all %}
+                      <td style="color:#800080;}">{{ category }}</td>
+                      {% endfor %}
+                      <td>₦ {{ income.amount }}</td>
+                      <td>
+                        {{ income.created_on|date:"N j Y" }} -
+                        <!---->
+                        {{ income.updated_on|timesince }}
+                      </td>
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+
+  <!-- end section -->
+  <!-- section -->
+
+  <!-- end section -->
+  <!-- section -->
+  <!-- End Portfolio Section -->
+  <!-- End Team Section -->
+  <!-- ======= Mission Statement ======= -->
+
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+{% include "partials/_footer.html" %}
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"
+  ><i class="bi bi-arrow-up-short"></i
+></a>
+
+<!-- Vendor JS Files -->
+{% endblock %}

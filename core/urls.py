@@ -32,6 +32,9 @@ urlpatterns = [
     path('event/', include('event.urls')),
     path('sermon/', include('sermon.urls')),
     path('', include('faith_lift.urls')),
+    path('income/', include('income.urls')),
+    #path('', include('hrms.urls')),
+    #path('general_settings/', include('general_settings.urls')),
 
 
 ]
